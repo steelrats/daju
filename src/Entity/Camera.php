@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CameraRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CameraRepository::class)]
@@ -25,8 +27,13 @@ class Camera
     #[ORM\Column]
     private ?bool $stabilise = null;
 
-    #[ORM\ManyToOne(inversedBy: 'camera')]
-    private ?Drones $drones = null;
+    #[ORM\OneToMany(mappedBy: 'camera', targetEntity: Drones::class)]
+    private Collection $drone;
+
+    public function __construct()
+    {
+        $this->drone = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -81,14 +88,32 @@ class Camera
         return $this;
     }
 
-    public function getDrones(): ?Drones
+    /**
+     * @return Collection<int, Drones>
+     */
+    public function getDrone(): Collection
     {
-        return $this->drones;
+        return $this->drone;
     }
 
-    public function setDrones(?Drones $drones): self
+    public function addDrone(Drones $drone): self
     {
-        $this->drones = $drones;
+        if (!$this->drone->contains($drone)) {
+            $this->drone->add($drone);
+            $drone->setCamera($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDrone(Drones $drone): self
+    {
+        if ($this->drone->removeElement($drone)) {
+            // set the owning side to null (unless already changed)
+            if ($drone->getCamera() === $this) {
+                $drone->setCamera(null);
+            }
+        }
 
         return $this;
     }

@@ -36,15 +36,15 @@ class Drones
     #[ORM\Column]
     private ?int $vitesseVerticale = null;
 
-    #[ORM\OneToMany(mappedBy: 'drones', targetEntity: Camera::class)]
-    private Collection $camera;
-
-    #[ORM\OneToMany(mappedBy: 'drones', targetEntity: commentaires::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'drones', targetEntity: Commentaire::class, orphanRemoval: true)]
     private Collection $commentaire;
+
+    #[ORM\ManyToOne(inversedBy: 'drone')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Camera $camera = null;
 
     public function __construct()
     {
-        $this->camera = new ArrayCollection();
         $this->commentaire = new ArrayCollection();
     }
 
@@ -138,44 +138,14 @@ class Drones
     }
 
     /**
-     * @return Collection<int, Camera>
-     */
-    public function getCamera(): Collection
-    {
-        return $this->camera;
-    }
-
-    public function addCamera(Camera $camera): self
-    {
-        if (!$this->camera->contains($camera)) {
-            $this->camera->add($camera);
-            $camera->setDrones($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCamera(Camera $camera): self
-    {
-        if ($this->camera->removeElement($camera)) {
-            // set the owning side to null (unless already changed)
-            if ($camera->getDrones() === $this) {
-                $camera->setDrones(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, commentaires>
+     * @return Collection<int, Commentaire>
      */
     public function getCommentaire(): Collection
     {
         return $this->commentaire;
     }
 
-    public function addCommentaire(commentaires $commentaire): self
+    public function addCommentaire(Commentaire $commentaire): self
     {
         if (!$this->commentaire->contains($commentaire)) {
             $this->commentaire->add($commentaire);
@@ -185,7 +155,7 @@ class Drones
         return $this;
     }
 
-    public function removeCommentaire(commentaires $commentaire): self
+    public function removeCommentaire(Commentaire $commentaire): self
     {
         if ($this->commentaire->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
@@ -193,6 +163,18 @@ class Drones
                 $commentaire->setDrones(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCamera(): ?Camera
+    {
+        return $this->camera;
+    }
+
+    public function setCamera(?Camera $camera): self
+    {
+        $this->camera = $camera;
 
         return $this;
     }

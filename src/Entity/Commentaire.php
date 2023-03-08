@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentairesRepository;
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CommentairesRepository::class)]
-class Commentaires
+#[ORM\Entity(repositoryClass: CommentaireRepository::class)]
+class Commentaire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,13 +14,7 @@ class Commentaires
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $auteur = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $text = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -29,21 +23,13 @@ class Commentaires
     #[ORM\JoinColumn(nullable: false)]
     private ?Drones $drones = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $auteur = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(string $auteur): self
-    {
-        $this->auteur = $auteur;
-
-        return $this;
     }
 
     public function getText(): ?string
@@ -54,18 +40,6 @@ class Commentaires
     public function setText(string $text): self
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
 
         return $this;
     }
@@ -90,6 +64,18 @@ class Commentaires
     public function setDrones(?Drones $drones): self
     {
         $this->drones = $drones;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }
