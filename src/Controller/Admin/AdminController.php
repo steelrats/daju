@@ -32,7 +32,7 @@ class AdminController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_accueil');
         yield MenuItem::linkToCrud('Drones', 'fa-regular fa-drone', Drones::class);
         yield MenuItem::linkToCrud('Commentaire', 'fa-regular fa-comment', Commentaire::class);
         yield MenuItem::linkToCrud('Camera', 'bi bi-camera', Camera::class);

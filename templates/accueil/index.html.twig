@@ -10,10 +10,13 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-    
 
     This friendly message is coming from:
     <ul>
+        <li><a href="{{ path('app_login') }}">Login</a></li>
+        <li><a href="{{ path('app_register') }}">Sign In</a></li>
+        <li><a href="{{ path('app_logout') }}">Logout</a></li>
+        <li><a href="{{ path('admin') }}">Admin page</a></li>
         <li>Your controller at <code><a href="{{ '/srv/app/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
         <li>Your template at <code><a href="{{ '/srv/app/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
     </ul>
