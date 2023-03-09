@@ -30,9 +30,20 @@ class Camera
     #[ORM\OneToMany(mappedBy: 'camera', targetEntity: Drones::class)]
     private Collection $drone;
 
+    #[ORM\Column]
+    private ?int $resolutionVertical = null;
+
+    #[ORM\Column]
+    private ?int $resolutionHorizontal = null;
+
     public function __construct()
     {
         $this->drone = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return (string) 'ouverture : f/'+$this->getOuverture()+' Resolution : '+$this->getResolution()+' Angle de vision : '+$this->getFov()+'° stabilise : '+$this->isStabilise();
     }
 
     public function getId(): ?int
@@ -57,7 +68,7 @@ class Camera
         return $this->resolution;
     }
 
-    public function setResolution(string $resolution): self
+    private function setResolution(string $resolution): self
     {
         $this->resolution = $resolution;
 
@@ -114,6 +125,55 @@ class Camera
                 $drone->setCamera(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResolutionVertical(): ?int
+    {
+        return $this->resolutionVertical;
+    }
+
+    public function setResolutionVertical(int $resolutionVertical): self
+    {
+        $this->resolutionVertical = $resolutionVertical;
+
+        switch ($resolutionVertical) {
+            case 4320:
+                $this->setResolution("8K");
+                break;
+            case 2160:
+                $this->setResolution("4K");
+                break;
+            case 1440:
+                $this->setResolution("2K");
+                break;
+            case 1080:
+                $this->setResolution("Full HD");
+                break;
+            case 720:
+                $this->setResolution("HD");
+                break;
+            default:
+                if ($resolutionVertical < 720) {
+                    $this->setResolution("SD");
+                } else {
+                    $this->setResolution("Inconue");
+                }
+                break;
+        }
+
+        return $this;
+    }
+
+    public function getResolutionHorizontal(): ?int
+    {
+        return $this->resolutionHorizontal;
+    }
+
+    public function setResolutionHorizontal(int $resolutionHorizontal): self
+    {
+        $this->resolutionHorizontal = $resolutionHorizontal;
 
         return $this;
     }

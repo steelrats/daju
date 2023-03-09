@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Fabriquant{% endblock %}
+
+{% block body %}
+    <h1>Edit Fabriquant</h1>
+
+    {{ include('fabriquant/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_fabriquant_index') }}">back to list</a>
+
+    {{ include('fabriquant/_delete_form.html.twig') }}
+{% endblock %}

@@ -27,6 +27,11 @@ class Commentaire
     #[ORM\JoinColumn(nullable: false)]
     private ?User $auteur = null;
 
+    public function __toString(): string
+    {
+        return (string) $this->getDrones()+' '+$this->getText();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

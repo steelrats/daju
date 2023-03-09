@@ -22,9 +22,6 @@ class Drones
     private ?int $prix = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $fabriquant = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $resistanceVent = null;
 
     #[ORM\Column]
@@ -43,9 +40,18 @@ class Drones
     #[ORM\JoinColumn(nullable: false)]
     private ?Camera $camera = null;
 
+    #[ORM\ManyToOne(inversedBy: 'drones')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Fabriquant $fabriquant = null;
+
     public function __construct()
     {
         $this->commentaire = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return (string)  $this->getNom()+' '+$this->getFabriquant();
     }
 
     public function getId(): ?int
@@ -73,18 +79,6 @@ class Drones
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getFabriquant(): ?string
-    {
-        return $this->fabriquant;
-    }
-
-    public function setFabriquant(string $fabriquant): self
-    {
-        $this->fabriquant = $fabriquant;
 
         return $this;
     }
@@ -175,6 +169,18 @@ class Drones
     public function setCamera(?Camera $camera): self
     {
         $this->camera = $camera;
+
+        return $this;
+    }
+
+    public function getFabriquant(): ?Fabriquant
+    {
+        return $this->fabriquant;
+    }
+
+    public function setFabriquant(?Fabriquant $fabriquant): self
+    {
+        $this->fabriquant = $fabriquant;
 
         return $this;
     }

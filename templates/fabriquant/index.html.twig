@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fabriquant index{% endblock %}
+
+{% block body %}
+    <h1>Fabriquant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fabriquant in fabriquants %}
+            <tr>
+                <td>{{ fabriquant.id }}</td>
+                <td>{{ fabriquant.nom }}</td>
+                <td>
+                    <a href="{{ path('app_fabriquant_show', {'id': fabriquant.id}) }}">show</a>
+                    <a href="{{ path('app_fabriquant_edit', {'id': fabriquant.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_fabriquant_new') }}">Create new</a>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Camera;
 use App\Entity\Commentaire;
 use App\Entity\Drones;
+use App\Entity\Fabriquant;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,5 +38,6 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaire', 'fa-regular fa-comment', Commentaire::class);
         yield MenuItem::linkToCrud('Camera', 'bi bi-camera', Camera::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fa-regular fa-user', User::class);
+        yield MenuItem::linkToCrud('Fabriquant', 'bi bi-camera', Fabriquant::class);
     }
 }
