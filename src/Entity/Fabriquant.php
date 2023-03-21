@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FabriquantRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,9 +22,13 @@ class Fabriquant
     #[ORM\OneToMany(mappedBy: 'fabriquant', targetEntity: Drones::class)]
     private Collection $drones;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->drones = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable('now');
     }
 
     public function __toString(): string
@@ -74,6 +79,18 @@ class Fabriquant
                 $drone->setFabriquant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getcreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setcreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

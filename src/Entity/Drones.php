@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\DronesRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -44,14 +45,18 @@ class Drones
     #[ORM\JoinColumn(nullable: false)]
     private ?Fabriquant $fabriquant = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->commentaire = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable('now');
     }
 
     public function __toString(): string
     {
-        return (string)  $this->getNom()+' '+$this->getFabriquant();
+        return (string)  $this->getNom().' '.$this->getFabriquant();
     }
 
     public function getId(): ?int
@@ -181,6 +186,18 @@ class Drones
     public function setFabriquant(?Fabriquant $fabriquant): self
     {
         $this->fabriquant = $fabriquant;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

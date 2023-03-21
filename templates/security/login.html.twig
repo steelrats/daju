@@ -1,7 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_clean.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -10,7 +12,7 @@
         <div class="form-value">
             <form method="post">
                 {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert alert-danger white">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
             
                 {% if app.user %}
@@ -19,25 +21,27 @@
                     </div>
                 {% endif %}
             
-                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                <h1 class="h3 mb-3 font-weight-normal">S'identifier</h1>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-                    <label for="inputUsername">Username</label>
+                    <label for="inputUsername">Identifiant</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="lock-closed-outline"></ion-icon>
-                    <label for="inputPassword">Password</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    <label for="inputPassword">Mot de passe</label>
                 </div>
                 <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}"
                 >
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
+                <button class="btn btn-lg btn-primary button" type="submit">
+                    Se connecter
                 </button>
             </form>
+            <a href="{{ path('app_register')}}"><button id="inscription" class="btn btn-lg btn-primary button">S'inscrire</button></a>
         </div>
+        
     </div>
 </section>
 {% endblock %}

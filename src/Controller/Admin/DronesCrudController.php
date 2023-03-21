@@ -3,15 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Drones;
-use App\Entity\Camera;
-use App\Entity\Fabriquant;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class DronesCrudController extends AbstractCrudController
 {
@@ -30,5 +26,6 @@ class DronesCrudController extends AbstractCrudController
         yield IntegerField::new('vitesseHorizon');
         yield IntegerField::new('poids');
         yield TextField::new('resistanceVent');
+        yield DateField::new('createdAt')->setDisabled();
     }
 }

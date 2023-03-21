@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,14 +41,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $commentaires;
 
     #[ORM\Column]
-    private ?bool $isActive = null;
+    private ?bool $isActive = true;
 
-    #[ORM\Column]
+    #[ORM\Column(updatable:false)]
     private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable('now');
     }
 
     public function __toString(): string

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CameraRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,14 +37,18 @@ class Camera
     #[ORM\Column]
     private ?int $resolutionHorizontal = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->drone = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable('now');
     }
 
     public function __toString(): string
     {
-        return (string) 'ouverture : f/'+$this->getOuverture()+' Resolution : '+$this->getResolution()+' Angle de vision : '+$this->getFov()+'° stabilise : '+$this->isStabilise();
+        return (string) 'ouverture : f/'.$this->getOuverture().' Resolution : '.$this->getResolution().' Angle de vision : '.$this->getFov().'° stabilise : '.$this->isStabilise();
     }
 
     public function getId(): ?int
@@ -174,6 +179,18 @@ class Camera
     public function setResolutionHorizontal(int $resolutionHorizontal): self
     {
         $this->resolutionHorizontal = $resolutionHorizontal;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

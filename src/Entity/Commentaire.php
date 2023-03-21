@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
@@ -27,9 +28,14 @@ class Commentaire
     #[ORM\JoinColumn(nullable: false)]
     private ?User $auteur = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable('now');
+    }
+
     public function __toString(): string
     {
-        return (string) $this->getDrones()+' '+$this->getText();
+        return (string) $this->getDrones().' '.$this->getText();
     }
 
     public function getId(): ?int

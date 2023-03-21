@@ -39,6 +39,7 @@ services:
       - php_socket:/var/run/php
       - caddy_data:/data
       - caddy_config:/config
+      - .:/app:cached
     ports:
       # HTTP
       - target: 80
