@@ -21,14 +21,13 @@ class RegistrationFormType extends AbstractType
             ->add('username',
             TextType::class,
             [
-                'attr' => ['class' => "form-control"],
+                'attr' => ['class' => ""],
             ]
             )
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['class' => "form-control"],
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
@@ -44,10 +43,10 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class,
             [
-                'attr' => ['class' => "form-control"],
+                'attr' => ['class' => ""],
             ])
             ->add('submit', SubmitType::class, [
-                'attr' => ['type' => "submit", 'class' => "btn btn-lg btn-primary button"],
+                'attr' => ['type' => "submit", 'class' => "btn btn-lg button"],
                 'label' => 'Créer un compte',
             ]);
     }
