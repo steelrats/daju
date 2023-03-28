@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230317110044 extends AbstractMigration
+final class Version20230328181619 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -31,7 +31,7 @@ final class Version20230317110044 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_67F068BCF7ABEBA0 ON commentaire (drones_id)');
         $this->addSql('CREATE INDEX IDX_67F068BC60BB6FE6 ON commentaire (auteur_id)');
         $this->addSql('COMMENT ON COLUMN commentaire.created_at IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('CREATE TABLE drones (id INT NOT NULL, camera_id INT NOT NULL, fabriquant_id INT NOT NULL, nom VARCHAR(255) NOT NULL, prix INT NOT NULL, resistance_vent VARCHAR(255) NOT NULL, poids INT NOT NULL, vitesse_horizon INT NOT NULL, vitesse_verticale INT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE drones (id INT NOT NULL, camera_id INT NOT NULL, fabriquant_id INT NOT NULL, nom VARCHAR(255) NOT NULL, prix INT NOT NULL, resistance_vent VARCHAR(255) NOT NULL, poids INT NOT NULL, vitesse_horizon INT NOT NULL, vitesse_verticale INT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, image_name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_513FE15BB47685CD ON drones (camera_id)');
         $this->addSql('CREATE INDEX IDX_513FE15B5E0C7E7D ON drones (fabriquant_id)');
         $this->addSql('COMMENT ON COLUMN drones.created_at IS \'(DC2Type:datetime_immutable)\'');
