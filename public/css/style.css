@@ -161,8 +161,8 @@ a:focus {
   padding: 0;
 }
 
-.custom_nav-container .navbar-nav {
-  padding-left: 18%;
+.custom_nav-container {
+  padding-left: 10%;
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
