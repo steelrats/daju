@@ -29,23 +29,29 @@
                 <a class="nav-link" href="{{ path('app_accueil') }}">Acceuil </a>
               </li>
               {% endif %}
-              {% if currentPath == path('app_login') %}
-              <li class="nav-item active">
-                <a class="nav-link" href="{{ path('app_login') }}">Connexion </a>
-              </li>
+              {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion </a>
+                </li>
               {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_login') }}">Connexion </a>
-              </li>
-              {% endif %}
-              {% if currentPath == path('app_register') %}
-              <li class="nav-item active">
-                <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_register') }}">Inscription </a>
-              </li>
+                {% if currentPath == path('app_login') %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ path('app_login') }}">Connexion </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_login') }}">Connexion </a>
+                </li>
+                {% endif %}
+                {% if currentPath == path('app_register') %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('app_register') }}">Inscription </a>
+                </li>
+                {% endif %}
               {% endif %}
             </ul>
             <div class="user_option">
