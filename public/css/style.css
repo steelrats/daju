@@ -901,6 +901,7 @@ a:focus {
 /* footer section*/
 .footer_section {
   background-image: url('../img/background6.jpg');
+  background-position: bottom;
   color: #ffffff;
   padding: 75px 0 40px 0;
   text-align: center;

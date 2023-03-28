@@ -1,7 +1,7 @@
 <div class="hero_area">
 
     <div class="bg-box">
-      <img src="{{ asset('img/background6.jpg') }}" alt="">
+      <img class="header-background" src="{{ asset('img/background6.jpg') }}" alt="">
     </div>
     <!-- header section strats -->
     <header class="header_section">
@@ -21,7 +21,7 @@
             <ul class="navbar-nav  mx-auto ">
               {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
               <li class="nav-item">
-                <a class="nav-link" href="">Acceuil </a>{% if currentPath == path('app_accueil') %}<span class="sr-only">(current)</span>{% endif %}
+                <a class="nav-link" href="">Acceuil </a> {% if currentPath == path('app_accueil') %}<span class="sr-only">(current)</span>{% endif %}
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="">Menu </a>
@@ -36,7 +36,7 @@
             <div class="user_option">
               <a href="{{ path('app_login') }}" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
+              </a> {% if currentPath == path('app_accueil') %}<span class="sr-only">(current)</span>{% endif %}
               <a class="cart_link" href="#">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>

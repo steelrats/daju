@@ -1,13 +1,15 @@
-{% extends 'base_clean.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
 {% block body %}
 <section>
+    {% include "header.html.twig" %}
     <div class="form-box">
         <div class="form-value">
             {{ form_start(registrationForm) }}
@@ -28,8 +30,9 @@
                     {{ form_label(registrationForm.email) }}
                 </div>
             {{ form_end(registrationForm) }}
-            <a href="{{ path('app_login')}}"><button id="Connexion" class="btn btn-lg btn-primary button">Se connecter</button></a>
+            <a href="{{ path('app_login')}}"><button id="Connexion" class="btn btn-lg button">Se connecter</button></a>
         </div>
     </div>
+    {% include "footer.html.twig" %}
 </section>
 {% endblock %}
