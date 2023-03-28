@@ -19,8 +19,8 @@ class CameraCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield NumberField::new('ouverture');
-        yield IntegerField::new('resolutionVertical');
         yield IntegerField::new('resolutionHorizontal');
+        yield IntegerField::new('resolutionVertical');
         yield IntegerField::new('fov');
         yield BooleanField::new('stabilise');
         yield DateField::new('createdAt')->setDisabled();
