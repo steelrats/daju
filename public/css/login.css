@@ -31,6 +31,7 @@ section{
 .footer_section{
     margin-top: auto;
     background-image: none !important;
+    width: 100% !important;
 }
 .form-box{
     position: relative;
