@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Drones;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -27,7 +28,10 @@ class DronesCrudController extends AbstractCrudController
         yield IntegerField::new('vitesseHorizon');
         yield IntegerField::new('poids');
         yield TextField::new('resistanceVent');
-        yield ImageField::new('imageName')->setUploadDir('/public/img/uploads/')->setUploadedFileNamePattern('[timestamp]_[slug].[extension]')->setBasePath('img/uploads/');
+        yield ImageField::new('imageName')
+                ->setUploadDir('/public/img/uploads/')
+                ->setUploadedFileNamePattern('[timestamp]_[slug].[extension]')
+                ->setDisabled($pageName == Crud::PAGE_EDIT);
         yield DateField::new('createdAt')->setDisabled();
         
     }
