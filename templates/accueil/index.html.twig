@@ -13,10 +13,9 @@
           Les Drones
         </h2>
       </div>
-
-      {% for drone in drones %}
-        <div class="filters-content">
-          <div class="row grid">
+      <div class="filters-content">
+        <div class="row grid">
+        {% for drone in drones %}
             <div class="col-sm-6 col-lg-4 all pizza">
               <div class="box">
                 <div>
@@ -43,9 +42,10 @@
                 </div>
               </div>
             </div>
-          </div>
+        {% endfor %}
         </div>
-      {% endfor %}
+      </div>
+      {{ knp_pagination_render(drones, '/pagination.html.twig', {}, {'align': 'center'}) }}
     </div>
   </section>
 

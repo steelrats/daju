@@ -147,6 +147,9 @@ class Camera
             case 4320:
                 $this->setResolution("8K");
                 break;
+            case 3078:
+                $this->setResolution("5.3K");
+                break;
             case 2160:
                 $this->setResolution("4K");
                 break;
