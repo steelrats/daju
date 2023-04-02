@@ -207,7 +207,7 @@ class Drones
 
     public function getImageName(): ?string
     {
-        return $this->imageName;
+        return 'img/uploads/' . $this->imageName;
     }
 
     public function setImageName(string $imageName): self
