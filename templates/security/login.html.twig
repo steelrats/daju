@@ -3,11 +3,14 @@
 {% block title %}Connexion{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
 {% block body %}
+
 <section>
+    {% include "header.html.twig" %}
     <div class="form-box">
         <div class="form-value">
             <form method="post">
@@ -21,27 +24,28 @@
                     </div>
                 {% endif %}
             
-                <h1 class="h3 mb-3 font-weight-normal">S'identifier</h1>
+                <h1 class="h3 mb-3 reset-font font-weight-normal">S'identifier</h1>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
-                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername"  autocomplete="username" required autofocus>
                     <label for="inputUsername">Identifiant</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    <input type="password" name="password" id="inputPassword"  autocomplete="current-password" required>
                     <label for="inputPassword">Mot de passe</label>
                 </div>
                 <input type="hidden" name="_csrf_token"
                     value="{{ csrf_token('authenticate') }}"
                 >
-                <button class="btn btn-lg btn-primary button" type="submit">
+                <button class="btn btn-lg button" type="submit">
                     Se connecter
                 </button>
             </form>
-            <a href="{{ path('app_register')}}"><button id="inscription" class="btn btn-lg btn-primary button">S'inscrire</button></a>
+            <a href="{{ path('app_register')}}"><button id="inscription" class="btn btn-lg button">S'inscrire</button></a>
         </div>
         
     </div>
+    {% include "footer.html.twig" %}
 </section>
 {% endblock %}

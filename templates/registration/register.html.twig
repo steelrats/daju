@@ -3,15 +3,17 @@
 {% block title %}Inscription{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
 {% block body %}
 <section>
+    {% include "header.html.twig" %}
     <div class="form-box">
         <div class="form-value">
             {{ form_start(registrationForm) }}
-                <h1 class="h3 mb-3 font-weight-normal">S'inscrire</h1>
+                <h1 class="h3 mb-3 reset-font font-weight-normal">S'inscrire</h1>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
                     {{ form_widget(registrationForm.username) }}
@@ -28,8 +30,9 @@
                     {{ form_label(registrationForm.email) }}
                 </div>
             {{ form_end(registrationForm) }}
-            <a href="{{ path('app_login')}}"><button id="Connexion" class="btn btn-lg btn-primary button">Se connecter</button></a>
+            <a href="{{ path('app_login')}}"><button id="Connexion" class="btn btn-lg button">Se connecter</button></a>
         </div>
     </div>
+    {% include "footer.html.twig" %}
 </section>
 {% endblock %}

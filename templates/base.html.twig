@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <!-- Basic -->
         <meta charset="utf-8" />
@@ -58,6 +58,8 @@
         {% endblock %}
     </head>
     <body class="sub_page">
+    {% include "header.html.twig" %}
         {% block body %}{% endblock %}
+    {% include "footer.html.twig" %}
     </body>
 </html>
