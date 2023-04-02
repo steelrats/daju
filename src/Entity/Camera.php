@@ -17,7 +17,7 @@ class Camera
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?float $Ouverture = null;
+    private ?float $ouverture = null;
 
     #[ORM\Column(length: 255)]
     private ?string $resolution = null;
@@ -58,12 +58,12 @@ class Camera
 
     public function getOuverture(): ?float
     {
-        return $this->Ouverture;
+        return $this->ouverture;
     }
 
-    public function setOuverture(float $Ouverture): self
+    public function setOuverture(float $ouverture): self
     {
-        $this->Ouverture = $Ouverture;
+        $this->ouverture = $ouverture;
 
         return $this;
     }
