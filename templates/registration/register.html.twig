@@ -4,33 +4,45 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 {% endblock %}
 
 {% block body %}
 <section>
     {% include "header.html.twig" %}
-    <div class="form-box">
-        <div class="form-value">
-            {{ form_start(registrationForm) }}
-                <h1 class="h3 mb-3 reset-font font-weight-normal">S'inscrire</h1>
-                <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    {{ form_widget(registrationForm.username) }}
-                    {{ form_label(registrationForm.username) }}
-                </div>
-                <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    {{ form_widget(registrationForm.plainPassword) }}
-                    {{ form_label(registrationForm.plainPassword) }}
-                </div>
-                <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    {{ form_widget(registrationForm.email) }}
-                    {{ form_label(registrationForm.email) }}
-                </div>
-            {{ form_end(registrationForm) }}
-            <a href="{{ path('app_login')}}"><button id="Connexion" class="btn btn-lg button">Se connecter</button></a>
+    <div class="form">
+        {{ form_start(registrationForm) }}
+        {% set formErrors = registrationForm.vars.errors.form.getErrors(true) %}
+
+        {% if formErrors|length %}
+            <div class="error pt-3 pr-3 pl-3 pb-0 mb-4">
+                    {% for error in formErrors %}
+                        <p class="mb-3">{{ error.message }}</p>
+                    {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="form-box">
+            <div class="form-value">
+                    <h1 class="h3 mb-3 reset-font font-weight-normal">S'inscrire</h1>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        {{ form_widget(registrationForm.username) }}
+                        {{ form_label(registrationForm.username) }}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        {{ form_widget(registrationForm.plainPassword) }}
+                        {{ form_label(registrationForm.plainPassword) }}
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        {{ form_widget(registrationForm.email) }}
+                        {{ form_label(registrationForm.email) }}
+                    </div>
+                {{ form_end(registrationForm) }}
+                <a href="{{ path('app_login')}}"><button type="button" id="Connexion" class="btn btn-lg button">Se connecter</button></a>
+            </div>
         </div>
     </div>
     {% include "footer.html.twig" %}
