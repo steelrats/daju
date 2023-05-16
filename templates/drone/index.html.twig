@@ -1,0 +1,58 @@
+{% extends 'base_clean.html.twig' %}
+
+{% block title %}{{ drone.fabriquant }}&nbsp;{{ drone.nom }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section>
+        {% include "header.html.twig" %}
+            <h3 class="mb-5 mt-5 mx-2 py-2 border text-center background white">
+                {{ drone.fabriquant }}&nbsp;{{ drone.nom }}
+            </h3>
+            <div class="row ml-3 mb-5">
+                <div class="col-4 mt-5">
+                    <img src="{{ asset(drone.imageName) }}" alt="drones img" class="img-fluid">
+                </div>
+                <div class="col-8 white">
+                    <div class="ml-3 mr-3 mt-3 background border">
+                        <div class="m-3">
+                            <div class="light_background">
+                            <h4>
+                                Camera
+                            </h4>
+                            <p class="text-center">
+                                <b> video : </b> {{ drone.camera.resolution }} <br>
+                                <b> Ouverture : </b> f/{{ drone.camera.ouverture }} <br>
+                                <b> FOV : </b> {{ drone.camera.ouverture }}° <br>
+                                {% if drone.camera.stabilise %}
+                                <b> Stabiliser : </b> Oui <br>
+                                {% else %}
+                                <b> Stabiliser : </b> Non <br>
+                                {% endif %}
+                                <b>  Vertical : </b> {{ drone.camera.resolutionVertical }} <br>
+                                <b>  Horizontal : </b> {{ drone.camera.resolutionHorizontal }}
+                                </p>
+                            </div>
+                            <div class="light_background">
+                                <h4>
+                                    Vitesse
+                                </h4>
+                                <p class="text-center">
+                                    <b> Vitesse Horizontal : </b> {{ drone.vitesseHorizon }} <br>
+                                    <b> Vitesse Vertical : </b> {{ drone.vitesseVerticale }} <br>
+                                    <b> Resistance au Vent : </b> {{ drone.resistanceVent }} sur l’échelle de Beaufort
+                                </p>
+                            </div>
+                            <p><b> Poids : {{ drone.poids }} gramme</p>
+                            <p><b> Prix : {{ drone.prix }}€</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% include "footer.html.twig" %}
+    </section>
+{% endblock %}
