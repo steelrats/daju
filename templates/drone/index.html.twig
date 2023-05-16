@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ drone.fabriquant }}&nbsp;{{ drone.nom }}{% endblock %}
+
+{% block body %}
+<h3 class="mb-5 mt-5 text-center">
+    {{ drone.fabriquant }}&nbsp;{{ drone.nom }}
+</h3>
+<div class="row ml-3">
+    <div class="col-4">
+        <img class="img-fluid" src="{{ asset(drone.imageName) }}" alt="drones img">
+    </div>
+    <div class="col-8">
+        <div class="ml-3">
+        <h4>
+            {{ drone.fabriquant }}&nbsp;{{ drone.nom }}
+        </h4>
+        <div class="mt-1 mb-1 bg-light">
+            <h5>
+                Camera
+            </h5>
+            <p class="text-center">
+                Resolution video : {{ drone.camera.resolution }} <br>
+                Ouverture : f/{{ drone.camera.ouverture }} <br>
+                FOV : {{ drone.camera.ouverture }}° <br>
+                {% if drone.camera.stabilise %}
+                Stabiliser : Oui <br>
+                {% else %}
+                Stabiliser : Non <br>
+                {% endif %}
+                Resolution Vertical : {{ drone.camera.resolutionVertical }} <br>
+                Resolution Horizontal : {{ drone.camera.resolutionHorizontal }}
+            </p>
+        </div>
+        <div class="mt-1 mb-1 bg-light">
+            <h5>
+                Vitesse
+            </h5>
+            <p class="text-center">
+                Vitesse Horizontal : {{ drone.vitesseHorizon }} <br>
+                Vitesse Vertical : {{ drone.vitesseVerticale }} <br>
+                Resistance au Vent : {{ drone.resistanceVent }} sur l’échelle de Beaufort
+            </p>
+        </div>
+        <p>Poids : {{ drone.poids }} gramme</p>
+        <p>Prix : {{ drone.prix }}€</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
