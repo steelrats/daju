@@ -60,7 +60,6 @@ class UserCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $entityInstance->setUpdatedAt(new \DateTime());
         $entityManager->persist($entityInstance);
         $entityManager->flush();
     }
