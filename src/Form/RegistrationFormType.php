@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -52,6 +53,9 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class,
             [
                 'constraints' => [
+                    new Email([
+                        'message' => 'Veuillez entrer une adresse mail valide !'
+                    ]),
                     new NotBlank([
                         'message' => 'Veuillez entrer un email',
                     ]),
