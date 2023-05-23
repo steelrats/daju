@@ -10,6 +10,9 @@ body {
   padding: 90px 0;
 }
 
+.radius {
+  border-radius: 10px;
+}
 .layout_padding2 {
   padding: 75px 0;
 }

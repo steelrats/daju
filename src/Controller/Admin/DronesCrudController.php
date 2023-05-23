@@ -21,6 +21,7 @@ class DronesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('nom');
+        yield TextField::new('slug');
         yield AssociationField::new(('fabriquant'));
         yield IntegerField::new('prix');
         yield AssociationField::new('camera');

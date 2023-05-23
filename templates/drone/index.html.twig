@@ -53,6 +53,30 @@
                     </div>
                 </div>
             </div>
+            <div class="m-3 border background white form-group">
+                <div class="m-2">
+                    {% if connected %}
+                        {{ form_start(comment_form) }}
+                            {{ form_widget(comment_form.text) }}
+                            <div class="text-right">
+                                {{ form_row(comment_form.submit) }}
+                            </div>
+                        {{ form_end(comment_form) }}
+                    {% endif %}
+                        <h4>Liste des commentaire : </h4>
+                    {% if comment_list|length < 1 %}
+                        <p class="text-center">Aucun commentaire n'a encore été laissé pour ce drone !</p>
+                    {% endif %}
+                    {% for commentaire in comment_list %}
+                        <div class="light_background">
+                            <div class="m-1">
+                                <h3>{{ commentaire.auteur.username }}</h3>
+                                <p class="text-center">{{ commentaire.text }}</p>
+                            </div>
+                        </div>                
+                    {% endfor %}
+                </div>
+            </div>
         {% include "footer.html.twig" %}
     </section>
 {% endblock %}

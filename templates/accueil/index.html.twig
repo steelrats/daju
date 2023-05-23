@@ -17,7 +17,7 @@
         <div class="row grid">
         {% for drone in drones %}
           <div class="col-sm-6 col-lg-4 all pizza">
-            <a href="{{ path('app_drone', {'id': drone.id}) }}">
+            <a href="{{ path('app_drone', {'slug': drone.slug}) }}">
               <div class="box">
                 <div>
                   <div class="img-box">

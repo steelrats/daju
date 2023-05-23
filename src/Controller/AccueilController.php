@@ -23,8 +23,7 @@ class AccueilController extends AbstractController
             3
         );
 
-            return $this->render('accueil/index.html.twig', [
-                'controller_name' => 'AccueilController',
+        return $this->render('accueil/index.html.twig', [
                 'drones' => $drones
             ]);
         
