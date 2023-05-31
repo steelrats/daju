@@ -17,6 +17,7 @@ class PasswordType extends AbstractType
         $builder
             ->add('password', TypePasswordType::class, [
                 'label' => 'Mot de passe',
+            'required' => true,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([

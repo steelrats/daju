@@ -63,7 +63,9 @@
             </ul>
             <div class="user_option">
               {% if app.user %}
+                  <img style="width: 40px;" class="rounded-circle" src="{{ asset('img/uploads/pp/' ~ app.user.id ~ '.png') }}" alt="photo de profil">
                   <a class="user_link" href="{{ path('app_logout') }}">Déconnexion </a>
+                  <p>{{ app.user.id }}</p>
               {% endif %}
               {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('admin') }}" class="order_online">
