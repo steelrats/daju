@@ -20,7 +20,7 @@ class AccueilController extends AbstractController
         $drones = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            3
+            1
         );
 
         return $this->render('accueil/index.html.twig', [

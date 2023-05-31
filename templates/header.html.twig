@@ -18,11 +18,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {% if not app.user %}
               <ul class="navbar-nav mx-auto" style="position: absolute; left: 35%;">
-            {% else %}
-              <ul class="navbar-nav mx-auto" style="position: absolute; left: 45%;">
-            {% endif %}
               {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
               {% if currentPath == path('app_accueil') %}
               <li class="nav-item active">
@@ -52,6 +48,17 @@
                   <a class="nav-link" href="{{ path('app_register') }}">Inscription </a>
                 </li>
                 {% endif %}
+                {% else %}
+                {% if currentPath == path('reset_password') %}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('reset_password') }}">Change MDP</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('reset_password') }}">Change MDP</a>
+                  </li>
+                {% endif %}
+                
               {% endif %}
             </ul>
             <div class="user_option">
