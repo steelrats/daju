@@ -18,6 +18,7 @@ class CommentaireCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('text');
+        yield TextField::new('state');
         yield AssociationField::new('drones');
         yield AssociationField::new('auteur');
         yield DateField::new('createdAt')->setDisabled();

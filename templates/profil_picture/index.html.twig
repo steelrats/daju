@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Photo de profil{% endblock %}
+
+{% block body %}
+{{ form_start(pp_form) }}
+{{ form_row(pp_form.pp)}}
+{{ form_row(pp_form.submit)}}
+{{ form_end(pp_form) }}
+{% endblock %}

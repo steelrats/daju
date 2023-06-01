@@ -45,9 +45,21 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                     new Regex([
-                        'pattern' => '/.*[a-z].*[A-Z].*[0-9].*[^A-Za-z0-9]/',
-                        'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
-                    ]),
+                    'pattern' => '/.*[A-Z]/',
+                    'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule.',
+                ]),
+                new Regex([
+                    'pattern' => '/.*[a-z]/',
+                    'message' => 'Votre mot de passe doit contenir au moins une lettre minuscule.',
+                ]),
+                new Regex([
+                    'pattern' => '/.*[0-9]/',
+                    'message' => 'Votre mot de passe doit contenir au moins un chiffre.',
+                ]),
+                new Regex([
+                    'pattern' => '/.*[^A-Za-z0-9]/',
+                    'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.',
+                ]),
                 ],
             ])
             ->add('email', EmailType::class,
