@@ -20,9 +20,9 @@ class ProfilPictureType extends AbstractType
                 'constraints' => [
                     new File([
                         'mimeTypes' => [
-                        'image/png'
+                            'image/png'
                         ],
-                    'mimeTypesMessage' => 'Please upload a valid PNG'
+                        'mimeTypesMessage' => 'Please upload a valid PNG'
                     ])
                 ]
             ])
